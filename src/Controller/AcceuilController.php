@@ -27,6 +27,18 @@ class AcceuilController
              Response::HTTP_OK);
     }
 
+    #[Route("/connexion", name: "connexion", methods: ['POST'])]
+
+    function connection(Request $request)
+
+    {
+        var_dump($request);
+        
+        return new Response(
+            $request->request->get("nom" . "prenom" . "email" . "mdp"),       
+             Response::HTTP_OK);
+    }
+
     // Route dynamique avec paramètre
     #[Route("/salut/{nom}", name: "bonjour", methods: ["GET"])]
     function bonjour($nom)

@@ -32,7 +32,7 @@ class AcceuilController
     function connection(Request $request)
 
     {
-        var_dump($request);
+        // var_dump($request);
         
         return new Response(
             $request->request->get("nom" . "prenom" . "email" . "mdp"),       

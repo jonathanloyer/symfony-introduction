@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AcceuilController
+class AcceuilController extends AbstractController
 {
     #[Route("/", name: "acceuil", methods: ["GET"])]
 
@@ -75,11 +76,11 @@ class AcceuilController
         // Dans de cas concret on récupérer les données de l'utilisateur depuis la base de donnée
 
         // Récuperer l'identifiant depuis le query de l'URL
-        
+
         $id = $req->query->get('id');
 
 
-    return new JsonResponse([
+    return $this->json([
 
         "email" => "sam@sam.com",
         "prenom" => "sam",

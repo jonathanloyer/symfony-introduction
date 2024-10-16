@@ -3,10 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
-use Doctrine\Orm\Mapping as Orm;
+use Doctrine\ORM\Mapping as Orm;
 
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
-
 class Livre
 {
     #[ORM\Id]
@@ -15,11 +14,11 @@ class Livre
 
     private ?int $id = null;
 
-    #[ORM\Column(length:255)]
-    
+    #[ORM\Column(length: 255)]
+
     private ?string $titre = null;
 
-   
+
     /**
      * @return int|null
      */
@@ -32,8 +31,8 @@ class Livre
      * Set the value of id
      *
      * @return  self
-     */ 
-   
+     */
+
 
     /**
      * @return string|null
@@ -47,7 +46,7 @@ class Livre
      * Set the value of titre
      *
      * @return  self
-     */ 
+     */
     public function setTitre(?string $titre): self
     {
         $this->titre = $titre;

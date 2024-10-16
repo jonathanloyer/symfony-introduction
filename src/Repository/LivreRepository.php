@@ -15,4 +15,15 @@ class LivreRepository extends ServiceEntityRepository
         parent::__construct($doctrine, Livre::class);
     }
 
+    public function save( Livre $nouveauLivre, ?bool $flush = false) 
+    {
+        $this->getEntityManager()->persist($nouveauLivre);
+
+        if($flush){
+            $this->getEntityManager()->flush();
+        }
+        return $nouveauLivre;
+
+    }
+
 }

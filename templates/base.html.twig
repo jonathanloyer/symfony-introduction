@@ -20,12 +20,13 @@
 		<main>
 			<h1>Bienvenue
 				{{nom|capitalize ~ " " ~ prenom|capitalize}}
-                        Nombre de note {{notes|length}}
 				!</h1>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Nesciunt saepe blanditiis, excepturi id at amet reiciendis ad!
-				Voluptate dolor omnis nam, provident veritatis, iure inventore vel repellendus expedita tempore asperiores?
+                {% if notes|length > 0 %}
+                vous avez {{notes|length}}
+                {% else %}
+                vous n'avez pas de notes
+                {% endif %}
 			</p>
 		</main>
 

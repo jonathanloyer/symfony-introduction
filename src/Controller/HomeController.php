@@ -2,14 +2,24 @@
 
 namespace App\Controller;
 
+use App\Repository\AuteurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route("/home", name:"home")]
-    function home()
+    #[Route("/home", name: "home")]
+    function home(AuteurRepository $auteurRepo)
     {
-        return $this->render('base.html.twig');
+        $auteurs = $auteurRepo->findAll();
+        $prenom = 'john';
+        $nom = "doe";
+        $notes = [
+            'math' => 12,
+            'physique' => 17,
+            'informatique' => 18,
+            'Chimie' => 8,
+        ];
+        return $this->render('base.html.twig', ['prenom' => $prenom, 'nom' => $nom,"notes" =>$notes]);
     }
 }

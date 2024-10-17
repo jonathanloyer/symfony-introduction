@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Auteur;
+use App\Entity\Livre;
 use App\Repository\AuteurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -94,4 +95,32 @@ class AuteurController extends AbstractController
         $repo->supprimer($auteur);
         return $this->json("Auteur supprimer");
     }
+    #[Route("/auteur/livre/{auteur_id}", name: "auteur.livre", methods: ["POST"])]
+
+    function ajouterLivre(AuteurRepository $auteurrepo, Request $req, $auteur_id)
+    {
+        $auteur = $auteurrepo->find($auteur_id);
+
+        if (!$auteur) {
+            return $this->json('Auteur introuvable', Response::HTTP_NOT_FOUND);
+        }
+
+        $titre = $req->request->get('titre');
+
+        if (!isset($titre) || $titre == "") {
+            return $this->json(['erreur' => "Titre obligatoire !"]);
+        }
+
+        $livre = new Livre();
+        $livre->setTitre($titre);
+
+        $auteur->addLivre($livre);
+
+        $auteurrepo->sauvegarder($auteur,true);
+
+        return $this->json(["titre" => $livre->getTitre()]);
+
+
+    }
+
 }

@@ -17,8 +17,10 @@ class Livre
     #[ORM\Column(length: 255)]
 
     private ?string $titre = null;
-
-
+        
+    #[ORM\ManyToOne(targetEntity: Auteur::class, inversedBy:"livres")]
+    private $auteur;
+    
     /**
      * @return int|null
      */
@@ -50,6 +52,26 @@ class Livre
     public function setTitre(?string $titre): self
     {
         $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of auteur
+     */ 
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+
+    /**
+     * Set the value of auteur
+     *
+     * @return  self
+     */ 
+    public function setAuteur($auteur)
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }

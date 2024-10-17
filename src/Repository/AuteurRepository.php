@@ -14,20 +14,19 @@ class AuteurRepository extends ServiceEntityRepository
     {
         parent::__construct($doctrine, Auteur::class);
     }
-    public function save( Auteur $nouveauAuteur, ?bool $flush = false) 
+    
+    public function sauvegarder(Auteur $nouveauAuteur, ?bool $flush = false)
     {
         $this->getEntityManager()->persist($nouveauAuteur);
 
-        if($flush){
+        if ($flush) {
             $this->getEntityManager()->flush();
         }
         return $nouveauAuteur;
-
     }
     function supprimer(Auteur $auteur)
     {
         $this->getEntityManager()->remove($auteur);
         $this->getEntityManager()->flush();
     }
-
 }

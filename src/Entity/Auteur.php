@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AuteurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
@@ -27,7 +29,28 @@ class Auteur
 
     private ?int $date = null;
 
+    #[ORM\OneToMany(
+        targetEntity:"App\Entity\Livre",
+        mappedBy:"auteur",
+        cascade:['persist','remove']
+    )]
+    private $livres;
 
+        function __construct()
+        {
+            $this->livres = new ArrayCollection();            
+        }
+
+        
+        public function getLivres():Collection
+        {
+            return $this->livres;
+        }
+        function addLivre(Livre $livre)
+        {
+            $livre ->setAuteur($this);
+            $this->livres->add($livre);
+        }
 
     
     /**
@@ -101,4 +124,8 @@ class Auteur
 
         return $this;
     }
+
+    /**
+     * Get the value of livres
+     */ 
 }

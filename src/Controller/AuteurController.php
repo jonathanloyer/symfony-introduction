@@ -20,16 +20,16 @@ class AuteurController extends AbstractController
         $prenom = $req->request->get('prenom');
         $date = $req->request->get('date');
 
-        // Valider le titre
+        // Valider l'auteur
         if (!isset($nom) || $nom == "" || !isset($prenom) || $prenom == "" || !isset($date) || $date == "") {
             return $this->json(['erreur' => "Données obligatoires !"]);
         }
 
-        // Créer le livre
+        // Créer l'auteur
         $nouveauAuteur = new Auteur();
         $nouveauAuteur->setNom($nom)->setPrenom($prenom)->setDate($date);
 
-        // Enregistrer le livre dans la BDD
+        // Enregistrer l'auteur dans la BDD
         $auteurSavegarder = $repository->sauvegarder($nouveauAuteur, true);
 
         return $this->json(['id' => $auteurSavegarder->getId(), "titre" => $auteurSavegarder->getNom()]);

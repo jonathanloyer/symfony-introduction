@@ -25,5 +25,11 @@ class LivreRepository extends ServiceEntityRepository
         return $nouveauLivre;
 
     }
+    
+    function supprimer(Livre $livre)
+    {
+        $this->getEntityManager()->remove($livre);
+        $this->getEntityManager()->flush();
+    }
 
 }

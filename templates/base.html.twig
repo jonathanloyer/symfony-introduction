@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="/css/global.css">
 	</head>
 	<body>
-		
+
 
 		<header>
 			<nav class='nav-header'>
@@ -21,12 +21,17 @@
 			<h1>Bienvenue
 				{{nom|capitalize ~ " " ~ prenom|capitalize}}
 				!</h1>
+
 			<p>
-                {% if notes|length > 0 %}
-                vous avez {{notes|length}}
-                {% else %}
-                vous n'avez pas de notes
-                {% endif %}
+				{% if notes|length > 0 %}
+					vous avez
+					{{notes|length}}
+				{% else %}
+					vous n'avez pas de notes
+				{% endif %}
+
+				{# operateur ternére c 'est un if en une seule ligne  #}
+				{% notes|length > 0 ? "vous avez des notes" : "vous n'avez pas de notes" %}
 			</p>
 		</main>
 

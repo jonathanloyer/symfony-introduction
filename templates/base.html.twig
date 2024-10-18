@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-		<link rel="stylesheet" href="/css/global.css">
-	</head>
-	<body>
+ {% extends "layout.html.twig" %}
+{% block titrePage %}
+<title>Page d'Accueil </title>
+ {% endblock %} 
 
 
-		<header>
-			<nav class='nav-header'>
-				<a href={{path('home')}}>Accueil</a>
-				<a href="/profil">Profil</a>
-				<a href={{path('contact')}}>Contact</a>
-			</nav>
-		</header>
 
-		<main>
+{% block contenuPage %}
+
 			<h1>Bienvenue
 				{{nom|capitalize ~ " " ~ prenom|capitalize}}
 				!</h1>
@@ -31,16 +20,15 @@
 				{% endif %}
 
 				{# operateur ternére c 'est un if en une seule ligne  #}
-				{% notes|length > 0 ? "vous avez des notes" : "vous n'avez pas de notes" %}
+				{# {% notes|length > 0 ? "vous avez des notes" : "vous n'avez pas de notes" %} #}
 			</p>
-		</main>
+			{% for cle, valeur in notes %}
+			<p>
+			{{cle}}: {{valeur}}
+			</p>
+			<span>{{ valeur >= 10 ? "validé" : "non validé" }}</span>
+			{% endfor %}
 
-		<footer>
-			<nav class='nav-footer'>
-				<a href={{path('home')}}>Accueil</a>
-				<a href="/profil">Profil</a>
-				<a href={{path('contact')}}>Contact</a>
-			</nav>
-		</footer>
-	</body>
-</html>
+		
+{%  endblock %} 
+

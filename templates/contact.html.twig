@@ -1,37 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-		<link rel="stylesheet" href="/css/global.css">
-	</head>
-	<body>
-		
+{% extends "layout.html.twig" %}
+{% block titrePage %}
+<title>Page de contact </title>
+ {% endblock %} 
 
-		<header>
-			<nav class='nav-header'>
-				<a href={{path('home')}}>Accueil</a>
-				<a href="/profil">Profil</a>
-				<a href={{path('contact')}}>Contact</a>
-			</nav>
-		</header>
 
-		<main>
+
+{% block contenuPage %}
+
 			<h1>Page de Contact</h1>
 			<section>
             <form action="">
 
             </form>
             </section>
-		</main>
-
-		<footer>
-			<nav class='nav-footer'>
-				<a href={{path('home')}}>Accueil</a>
-				<a href="/profil">Profil</a>
-				<a href={{path('contact')}}>Contact</a>
-			</nav>
-		</footer>
-	</body>
-</html>
+	
+ {% endblock %} 
